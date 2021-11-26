@@ -1,0 +1,45 @@
+@import "/src/assets/styles/global/variables/variables";
+
+.body
+{
+  // background-image: url("https://images.unsplash.com/photo-1481988535861-271139e06469?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=890&q=80");
+  background: $main-background-merge;
+  height: 100vh;
+  overflow: hidden;
+  background-size: 100%;
+  background-position: bottom;
+  position: relative;
+
+  // .debug-label
+  // {
+  //   position: absolute;
+  //   top: 0
+  // }
+
+  .container
+  {
+    width: 98%;
+    height: 97vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $main-background-color;
+    border-radius: 15px;
+    overflow: hidden;
+    overflow-x: auto;
+    box-sizing: border-box;
+    display: flex;
+    box-shadow: 0 0 35px 11px rgb(21 13 13 / 85%);
+    color: $main-color-light;
+
+    .content
+    {
+      padding: 20px 24px;
+      box-sizing: border-box;
+      width: 100%;
+      position: relative;
+      // background: $main-background-color;
+    }
+  }
+}

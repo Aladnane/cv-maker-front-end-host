@@ -1,0 +1,132 @@
+<section class="preview-block">
+  <header>
+    <app-button *ngIf="block_active === 'download'" text='{{"Download"}}' class='btn' icon_classes='{{"las la-hand-point-down"}}' btn='flat' (click)='download_cv()'></app-button>
+    <!-- <app-button *ngIf="block_active !== 'download'" text='Preview' class='btn' icon_classes='{{"las la-eye"}}' btn='flat' (click)='preview_cv()'></app-button> -->
+  </header>
+  <!-- {{cv | json}} -->
+  <div class="cv" [class.full-preview]="block_active == 'download'">
+    <div class="container" #pdf>
+      <!-- Personnel info -->
+      <div class="pers">
+          <header>
+            <div class="img">
+              <img [src]="(cv.picture) ? cv.picture : '/assets/images/user-placeholder.jpeg'" alt="">
+            </div>
+            <div class="full-name">
+              <h4 class="first-name title">{{cv.first_name}}</h4>
+              <h4 class="last-name title">{{cv.last_name}}</h4>
+            </div>
+            <span class="center profession">
+              {{cv.profession}}
+            </span>
+          </header>
+          <div class="details-info" *ngIf='cv.email !== "" || cv.phone !== "" || cv.address !== "" || cv.date_birth !== ""'>
+            <header>
+              <div class="line"></div>
+              <div class="icon">
+                <i class="las la-user-tie"></i>
+              </div>
+            </header>
+            <!-- Email phone-->
+            <div *ngIf='cv.email !== "" || cv.phone !== ""' class="info center">
+              <label class='title'>Contact</label>
+              <span class="value">{{cv.email}}</span>
+              <span class="value">{{cv.phone}}</span>
+            </div>
+
+            <!-- address -->
+            <div *ngIf='cv.address !== ""' class="info center">
+              <label class='title'>Address</label>
+              <span class="value">{{cv.address}}</span>
+            </div>
+            <!-- Date of Birth -->
+            <div *ngIf='cv.date_birth !== ""' class="info center">
+              <label class='title'>Date of Birth</label>
+              <span class="value">{{cv.date_birth}}</span>
+            </div>
+          </div>
+      </div>
+
+      <!-- Professional info -->
+      <div class="prof">
+          <!-- Trainings & Diplomas -->
+          <div class="block" *ngIf='cv.trainings_diplomas.length > 0'>
+            <header>
+              <div class="line"></div>
+              <i class="las la-graduation-cap"></i>
+              <h4 class="title">Trainings / Diplomas</h4>
+            </header>
+            <ul class="list-trainings-diplomas list-items">
+                <li *ngFor='let dip of cv.trainings_diplomas' class='trainings-diplomas'>
+                    <div class="header">
+                      <div class="date-interval">
+                        <span *ngIf="dip.start_date !== '' && dip.end_date !== '' " class="date">&vartriangleright;</span>
+                        <span class="date">{{dip.start_date}}</span>
+                        <span *ngIf="dip.start_date !== '' && dip.end_date !== '' " class="date">-</span>
+                        <span class="date">{{dip.end_date}}</span>
+                      </div>
+                      <div class="title">
+                        {{ dip.trainings_diplomas_name }}
+                      </div>
+                    </div>
+                    <div class='info'>
+                      <span>{{dip.school_name}}</span>
+                      <span *ngIf="dip.school_name !== '' && dip.school_localtion !== '' ">, </span>
+                      <span>{{dip.school_localtion}}</span>
+                    </div>
+                </li>
+            </ul>
+          </div>
+
+          <!-- Skills -->
+          <div class="block" *ngIf='cv.skills.length > 0'>
+            <header>
+              <div class="line"></div>
+              <i class="las la-graduation-cap"></i>
+              <h4 class="title">Skills</h4>
+            </header>
+            <ul class="list-skills">
+              <li *ngFor='let skill of cv.skills' class='skill'>
+                  <span class="block-title">{{skill.specialization_name}}</span>
+                  <ul>
+                      <li class="skills_details" *ngFor='let skills_details of skill.specialization'>
+                          <span class="title" *ngIf='skills_details.title'>{{skills_details.title}} : </span>
+                          <span class="skills_names">{{skills_details.skills.join(', ') }}</span>
+                      </li>
+                  </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Work History -->
+          <div class="block" *ngIf='cv.work_history.length > 0'>
+            <header>
+              <div class="line"></div>
+              <i class="las la-graduation-cap"></i>
+              <h4 class="title">Work History</h4>
+            </header>
+            <ul class="list-work-history list-items">
+                <li *ngFor='let work of cv.work_history' class='work-history'>
+                    <div class="title" *ngIf='work.job'><span class='icon'>&#9675;</span>{{ work.job }}</div>
+                    <div class='info'>
+                      <span>{{work.employer}}</span>
+                      <span *ngIf="work.employer !== '' && work.city !== '' ">, </span>
+                      <span>{{work.city}}</span>
+                    </div>
+                    <div class="date-interval">
+                      <span *ngIf="work.start_date !== '' || work.end_date !== '' ">&vartriangleright;Date :</span>
+                      <span class="date">{{work.start_date}}</span>
+                      <span *ngIf="work.start_date !== '' && work.end_date !== '' " class="date">&xmap;</span>
+                      <span class="date">{{work.end_date}}</span>
+                    </div>
+                </li>
+            </ul>
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="pdf_template" #pdf_template id='pdf_template'></div>
+</section>

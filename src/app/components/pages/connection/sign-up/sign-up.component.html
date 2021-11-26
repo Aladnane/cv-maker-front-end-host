@@ -1,0 +1,55 @@
+<form [formGroup]="form" class='sign-up' (ngSubmit)="on_submit()">
+  <div class="inputs">
+    <!-- Personnel Info -->
+    <div class="block" [class.active]='block_active == "personnel"'>
+      <div class="block-photo">
+          <div class="img">
+            <img src="/assets/images/user-placeholder.jpeg">
+          </div>
+          <app-button text='{{"Browse Photo"}}' icon_classes='{{"las la-camera-retro"}}' btn='flat'></app-button>
+          <input type="file" class='hidden'>
+      </div>
+
+      <app-input label="{{'Firstname'}}" class="input" [field]="first_name">
+        <input type="text" placeholder="Firstname" name='first_name' formControlName='first_name' (input)='connection_service.change_input_status("first_name",first_name.valid)' (blur)='connection_service.change_input_status("first_name", first_name.valid)' required minlength='3' maxlength='15'>
+      </app-input>
+
+      <app-input label="{{'Lastname'}}" class="input"  [field]="last_name">
+        <input type="text" placeholder="Lastname" name='last_name' formControlName='last_name' (input)='connection_service.change_input_status("last_name",last_name.valid)' (blur)='connection_service.change_input_status("last_name", last_name.valid)' required minlength='3' maxlength='15'>
+      </app-input>
+    </div>
+
+    <!-- Email + Password -->
+    <div class="block" [class.active]='block_active == "connection"'>
+      <app-input label="{{'Email'}}" class="input"  [field]="email">
+        <input type="email" placeholder="Email" name='email' autocomplete="off"  (input)='connection_service.change_input_status("email",email.valid)' (blur)='connection_service.change_input_status("email", email.valid)' formControlName='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+      </app-input>
+
+      <app-input label="{{'Password'}}" class="input"  [field]="password">
+        <input type="password" placeholder="Password" name='password' autocomplete="off"  (input)='connection_service.change_input_status("password",password.valid)' (blur)='connection_service.change_input_status("password", password.valid)' formControlName='password' required>
+      </app-input>
+
+      <app-input label="{{'Confirm Password'}}" class="input"  [field]="password_confirmation">
+        <input type="password" placeholder="Password Confirmation" name='password_confirmation' autocomplete="off"  (input)='connection_service.change_input_status("password_confirmation",password_confirmation.valid)' (blur)='connection_service.change_input_status("password_confirmation", password_confirmation.valid)' formControlName='password_confirmation' required>
+      </app-input>
+
+      <app-input label="{{'Subscribe to get the following new templates first'}}" class="input" [is_checkbox]=true>
+        <input type="checkbox" name='subscriber' formControlName='subscriber'>
+      </app-input>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <app-button text='{{"Previous"}}' icon_classes='{{"las la-hand-point-left"}}' btn='flat'
+    (click)="block_active = 'personnel'" *ngIf='block_active == "connection"'></app-button>
+
+    <div class='btn-left'>
+      <app-button text='{{"Next"}}' icon_classes='{{"las la-hand-point-right"}}' btn='flat' direction='rtl'
+      (click)="block_active = 'connection'" *ngIf='block_active == "personnel"'></app-button>
+
+      <div>
+        <app-button text='{{"Sign-Up"}}' [disabled]='form.invalid' icon_classes='{{"las la-sign-in-alt"}}' btn='submit' type='submit' direction='rtl' *ngIf='block_active == "connection"'></app-button>
+      </div>
+    </div>
+  </div>
+</form>

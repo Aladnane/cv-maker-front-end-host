@@ -1,0 +1,50 @@
+<nav [class.short]='!left_menu_displayed'>
+  <div class="container">
+    <header>
+      <h1 class="title"><i class="las la-dove"></i> Cv Maker</h1>
+    </header>
+
+    <!-- Menu -->
+    <div class="block">
+      <h5 class="title">{{"Menu" | uppercase}}</h5>
+      <ul>
+        <li><a routerLink="discover" routerLinkActive='active'>
+          <i class="las la-home"></i>Discover
+        </a></li>
+        <li><a routerLink="trending" routerLinkActive="active">
+          <i class="las la-dove"></i>Trending
+        </a></li>
+        <li><a routerLink="profil" routerLinkActive="active">
+          <i class="las la-user"></i>Profil
+        </a></li>
+        <li><a routerLink="cv-list" routerLinkActive="active">
+          <i class="las la-dove"></i>CV List
+        </a></li>
+        <li><a routerLink="cv-maker" routerLinkActive="active">
+          <i class="las la-dove"></i>Create New CV
+        </a></li>
+        <li><a routerLink="portfolio" routerLinkActive="active">
+          <i class="las la-dove"></i>Create New portfolio
+        </a></li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <!-- Categorie -->
+    <div class="block">
+      <h5 class="title">{{"Category" | uppercase}}</h5>
+      <ul>
+        <li><a routerLink="#" routerLinkActive="active"><i class="las la-dove"></i>Cat 1</a></li>
+        <li><a routerLink="#" routerLinkActive="active"><i class="las la-dove"></i>Cat 2</a></li>
+        <li><a routerLink="#" routerLinkActive="active"><i class="las la-dove"></i>Cat 3</a></li>
+        <li><a routerLink="#" routerLinkActive="active"><i class="las la-dove"></i>Cat 3</a></li>
+      </ul>
+    </div>
+    <hr>
+  </div>
+
+  <div class="toggle-display"  [class.rotate]='!left_menu_displayed' (click)='left_menu_displayed = !left_menu_displayed'>
+    <i class="las la-chevron-left"></i>
+  </div>
+</nav>

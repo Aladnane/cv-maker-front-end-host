@@ -1,0 +1,29 @@
+<!-- Filter -->
+<section class="cv-list component-container">
+    <ul>
+      <li *ngFor='let cv of cv_list'>
+        <div class="thumbnail">
+          <img src="{{cv.thumbnail_url}}">
+          <div class="tools">
+            <a class='tool'>
+              <i class="las la-pen-alt"></i>
+              <small>Create</small>
+            </a>
+            <div class="separator"></div>
+            <a class='tool'>
+              <i class="las la-expand"></i>
+              <small>Preview</small>
+            </a>
+          </div>
+        </div>
+
+        <div class="presentation">
+          <h2 class="title">{{cv.name}}</h2>
+          <p class="desc">{{cv.desc}}</p>
+          <ul class="tags">
+            <li *ngFor='let tag of cv.tags'>{{tag}}</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+</section>

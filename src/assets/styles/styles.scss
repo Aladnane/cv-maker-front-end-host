@@ -1,0 +1,73 @@
+@import "./global/variables/variables";
+@import "./global/scrollbar/scrollbar.scss";
+
+
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url("../fonts/Inter-SemiBold.ttf");
+}
+
+@font-face {
+  font-family: 'Inter-Light';
+  src: url("../fonts/Inter-Light.ttf");
+}
+
+@font-face {
+  font-family: 'Cairo-Regular';
+  src: url("../fonts/Cairo-Regular.ttf");
+}
+
+
+html, body
+{
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Cairo-Regular', sans-serif;
+  font-size: 15px;
+}
+
+body,
+p,
+h5,
+h4
+{
+  margin: 0;
+  padding: 0;
+}
+
+ul
+{
+  padding: 0;
+  margin: 0;
+}
+li
+{
+  list-style: none;
+}
+
+a
+{
+  text-decoration: none;
+  color: $link-color;
+}
+
+.hidden
+{
+  display: none;
+}
+
+.component-container
+{
+    height: -webkit-fill-available;
+    overflow: auto;
+    padding: 0 10px 50px;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
